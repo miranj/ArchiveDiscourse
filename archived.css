@@ -263,6 +263,13 @@ h1.topic-title {
 .user_name {
     font-size: 110%;
     color: #555555;
+    display: inline-block;
+}
+
+.created_at {
+    color: #aaa;
+    display: inline-block;
+    float: right;
 }
 
 .post_container {
