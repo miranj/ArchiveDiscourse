@@ -73,10 +73,4 @@ Both rewrite rules work together, in the following order:
 - Fix deprecation warnings
 - Add post_number achors into topic pages
 - Change default output file from index.html to archived.html
-
----
-**Note**
-Without topic slugs, a webserver re-write rule can be used to ensure historic
-links still find topics based on topic_id, even if the topic title has been
-edited or changed.
----
+- Add some HTML comments into templates to ease later post processing.
