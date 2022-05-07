@@ -137,6 +137,7 @@ def post_row(post_json):
             message = template.format(type(err).__name__, err.args)
             print('in post_row error:', 'write avatar', avatar_url, message, cnt, topic['slug'], "\n===========\n")
 
+    post_number = post_json['post_number']
     user_name = post_json['username']
     created_at = datetime.strptime(post_json['created_at'][0:20], '%Y-%m-%dT%H:%M:%S.')
     content = post_json['cooked']
@@ -185,7 +186,7 @@ def post_row(post_json):
     post_string = post_string + '        <div class="avatar_container">\n'
     post_string = post_string + '          <img src="../../../images/' + avatar_file_name + '" class="avatar" />\n'
     post_string = post_string + '        </div>\n'
-    post_string = post_string + '        <div class="post">\n'
+    post_string = post_string + '        <div class="post" id="' + str(post_number) + '">\n'
     post_string = post_string + '          <div class="user_name">' + user_name + '</div>\n'
     post_string = post_string + '          <div class="created_at">' + datetime.strftime(created_at, '%-d %b \'%y') + '</div>\n'
     post_string = post_string + '          <div class="post_content">\n'
