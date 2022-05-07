@@ -73,8 +73,8 @@ with open('archived.css', 'r') as css_file:
 
 # Function that writes out each individual topic page
 def write_topic(topic_json):
-    topic_download_url = base_url + '/t/' + topic_json['slug'] + '/' + str(topic_json['id'])
-    topic_relative_url = 't/' + topic_json['slug'] + '/' + str(topic_json['id'])
+    topic_download_url = base_url + '/t/' + str(topic_json['id'])
+    topic_relative_url = 't/'  + str(topic_json['id'])
     try:
         os.makedirs(topic_relative_url)
     except Exception as err:
@@ -171,12 +171,12 @@ def post_row(post_json):
                 response = requests.get(img_url, stream=True, cookies=jar)
                 img = Image.open(BytesIO(response.content))
                 img.save(os.getcwd() + '/images/' + file_name)
-                img_tag['src'] = '../../../images/' + file_name
+                img_tag['src'] = '../../images/' + file_name
             except Exception as err:
                 template = "An exception of type {0} occured. Arguments:\n{1!r}"
                 message = template.format(type(err).__name__, err.args)
                 print('post_row', 'save image', file_name, img_url, message)
-                img_tag['src'] = '../../../images/missing_image.png'
+                img_tag['src'] = '../../images/missing_image.png'
 
     content = ''
     for s in soup.contents:
@@ -184,7 +184,7 @@ def post_row(post_json):
 
     post_string = '      <div class="post_container">\n'
     post_string = post_string + '        <div class="avatar_container">\n'
-    post_string = post_string + '          <img src="../../../images/' + avatar_file_name + '" class="avatar" />\n'
+    post_string = post_string + '          <img src="../../images/' + avatar_file_name + '" class="avatar" />\n'
     post_string = post_string + '        </div>\n'
     post_string = post_string + '        <div class="post" id="' + str(post_number) + '">\n'
     post_string = post_string + '          <div class="user_name">' + user_name + '</div>\n'
@@ -206,7 +206,7 @@ category_id_to_name = dict([(cat['id'], cat['name']) for cat in category_json])
 
 def topic_row(topic_json):
     topic_html = '      <div class="topic-row">\n'
-    topic_url = 't/' + topic_json['slug'] + '/' + str(topic_json['id'])
+    topic_url = 't/' + str(topic_json['id'])
     topic_title_text = topic_json['fancy_title']
     topic_post_count = topic_json['posts_count']
     topic_pinned = topic_json['pinned_globally']
