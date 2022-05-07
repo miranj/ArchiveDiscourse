@@ -283,7 +283,7 @@ h1.topic-title {
 }
 
 .avatar {
-    border-radius: 4px;
+    border-radius: 50%;
 }
 
 .avatar_container {
