@@ -311,7 +311,7 @@ file_string = main_template \
     .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
     .replace("<!-- TOPIC_LIST -->", topic_list_string)
 
-f = open('index.html', 'w')
+f = open('archived.html', 'w')
 f.write(file_string)
 f.close()
 
