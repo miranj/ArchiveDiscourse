@@ -79,13 +79,22 @@ def write_topic(topic_json):
         os.makedirs(topic_relative_url)
     except Exception as err:
         print ('in write_topic error:', 'make directory')
+
     response = requests.get(topic_download_url + '.json', cookies=jar)
-    # posts_json will contain only the first 20 posts in a topic
-    posts_json = response.json()['post_stream']['posts']
-    # posts_stream will grab all of the post ids for that topic
-    posts_stream = response.json()['post_stream']['stream']
-    # get rid of first 20 in stream, as they are already in posts_json
-    posts_stream = posts_stream[20:]
+
+    try:
+        # posts_json will contain only the first 20 posts in a topic
+        posts_json = response.json()['post_stream']['posts']
+        # posts_stream will grab all of the post ids for that topic
+        posts_stream = response.json()['post_stream']['stream']
+        # get rid of first 20 in stream, as they are already in posts_json
+        posts_stream = posts_stream[20:]
+    except Exception as err:
+        print ('in write_topic error:', topic_download_url + '.json')
+        print (response.status_code)
+        print (response.content)
+        raise err
+
     # break stream into a list of list chunks of n posts each for lighter requests
     n = 20
     chunked_posts_stream = [posts_stream[i * n:(i + 1) * n] for i in range((len(posts_stream) + n - 1) // n)]
