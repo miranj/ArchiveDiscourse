@@ -131,6 +131,8 @@ def post_row(post_json):
         try:
             response = requests.get(avatar_url, stream=True, cookies=jar)
             img = Image.open(BytesIO(response.content))
+            if avatar_file_name.lower().endswith('.png'):
+                img = img.convert('RGBA');
             img.save(os.getcwd() + '/images/' + avatar_file_name)
         except Exception as err:
             template = "An exception of type {0} occured. Arguments:\n{1!r}"
@@ -170,6 +172,8 @@ def post_row(post_json):
             try:
                 response = requests.get(img_url, stream=True, cookies=jar)
                 img = Image.open(BytesIO(response.content))
+                if filename.lower().endswith('.png'):
+                    img = img.convert('RGBA');
                 img.save(os.getcwd() + '/images/' + file_name)
                 img_tag['src'] = '../../images/' + file_name
             except Exception as err:
