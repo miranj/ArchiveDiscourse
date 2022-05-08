@@ -8,6 +8,8 @@ Example of an archived Discourse generated using this code: https://discuss-lear
 
 Forked & adapted from: https://github.com/mcmcclur/ArchiveDiscourse, and then https://github.com/kitsandkats/ArchiveDiscourse
 
+See https://meta.discourse.org/t/a-basic-discourse-archival-tool/62614
+
 ## Motivation
 
 The Discourse platform creates great forums and is rich in features.  However,
