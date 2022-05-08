@@ -103,7 +103,7 @@ them if needed for very old clients that don't support gzip transfer.
 Note that due to how Nginx functions, an empty `index.html` file will need to
 be stored alongside each `index.html.gz` file to avoid 404 errors.
 
-See the (Nginx manual)[http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html]
+See the [Nginx manual](http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html)
 for more details.
 
 
