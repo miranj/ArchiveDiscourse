@@ -289,7 +289,7 @@ with open(os.getcwd() + "/images/missing_image.png", "wb") as missing_image_fh:
 
 # max_more_topics is the number of pages the code will load from the all topics list on your site
 # You might find that you need to change max_more_topics depending on the size of your forum
-max_more_topics = 99
+max_more_topics = 99999
 cnt = 0
 topic_path = '/latest.json?no_definitions=true&page='
 base_topic_url = base_url + topic_path
