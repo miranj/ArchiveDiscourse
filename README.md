@@ -61,6 +61,17 @@ I then fetched these from the original site:
 The resulting directory structure and uploads can then be used to serve the
 required files from a static server at the same address.
 
+Note that depending on features used on the Discourse server, the 'cooked' HTML
+may contain attributes and references that are can be removed to reduce page
+size a little, and also trim references to additional images.
+
+I removed the following attributes:
+
+    $ find . -name "index.html" -exec sed -i "s/srcset=\"[^\"]\+\"//g" {} \;
+    $ find . -name "index.html" -exec sed -i "s/data-download-href=\"[^\"]\+\"//g" {} \;
+    $ find . -name "index.html" -exec sed -i "s/data-small-upload=\"[^\"]\+\"//g" {} \;
+    $ find . -name "index.html" -exec sed -i "s/data-base62-sha1=\"[^\"]\+\"//g" {} \;
+
 ## Nginx Configuration
 
 ### Link Redirection
