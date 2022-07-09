@@ -327,3 +327,12 @@ label {
 div.meta {
     display: none;
 }
+
+aside.quote {
+    background-color: rgb(249, 249, 249);
+    border-left-color: rgb(233, 233, 233);
+    border-left-style: solid;
+    border-left-width: 5px;
+    padding: 12px;
+}
+
