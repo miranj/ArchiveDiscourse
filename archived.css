@@ -1,14 +1,14 @@
 body {
     margin: 0;
-    padding: 0;
-    font-family: Lato, Helvetica, sans-serif;
+    padding: 0 0 80px;
+    font-family: system-ui, sans-serif;
+    line-height: 1.4;
 }
 
 .archive-banner {
     background-color: gold;
     text-align: center;
     padding: 5px;
-    font-family: Lato, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 14px;
 }
@@ -38,10 +38,9 @@ p > code{
     }
 
     .header {
-        position: fixed;
+        position: sticky;
         top: 0;
-        width: 100%;
-        padding: 10px 0 0 10px;
+        padding: 10px calc(10%/2);
         z-index: 100;
         background-color: #fff;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
@@ -52,7 +51,7 @@ p > code{
     }
 
     h1.site-title {
-        font-size: 200%;
+        font-size: medium;
         margin: 0px;
     }
 
@@ -65,15 +64,11 @@ p > code{
 
     .main {
         width: 90%;
-        margin-top: 70px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
+        margin: 0.5em auto auto;
     }
 
     .topic-head {
-        display: inline-block;
-        width: 90%;
+        width: 100%;
     }
 
     .category-head {
@@ -84,26 +79,25 @@ p > code{
         display: none;
     }
 
+    .topic-row {
+        flex-wrap: wrap;
+    }
+
     .topic {
-        display: inline-block;
-        width: 90%;
+        width: 100%;
     }
 
-    .category {
-        display: none;
-    }
-
-    .post-count {
-        display: none;
+    .post-count:after {
+        content: " posts";
     }
 }
 
 @media only screen and (min-width: 761px) {
     .header {
-        position: fixed;
+        position: sticky;
         top: 0;
         width: 100%;
-        padding: 10px 0 0 0;
+        padding: 10px 0;
         z-index: 100;
         background-color: #fff;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
@@ -115,7 +109,7 @@ p > code{
     }
 
     h1.site-title {
-        font-size: 300%;
+        font-size: medium;
         margin: 0px;
     }
 
@@ -129,63 +123,54 @@ p > code{
 
     .main {
         width: 70%;
-        margin-top: 90px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: auto;
+        margin: 1em auto auto;
     }
 
-    .topic-head {
-        display: inline-block;
-        width: 70%;
-    }
-
-    .category-head {
-        display: inline-block;
-        width: 15%;
-    }
-
-    .post-count-head {
-        display: inline-block;
-        width: 14%;
-    }
-
+    .topic-head,
     .topic {
-        display: inline-block;
         width: 70%;
+        flex: 1;
     }
 
+    .category-head,
     .category {
-        display: inline-block;
-        width: 15%;
+        width: 10rem;
     }
 
+    .post-count-head,
     .post-count {
-        display: inline-block;
-        width: 14%;
+        width: 3rem;
+        text-align: right;
     }
 }
 
 a {
-    color: black;
-}
-
-a:visited {
-    color: gray;
+    text-decoration: underline;
+    text-decoration-color: gray;
+    text-underline-offset: 2px;
 }
 
 h1.topic-title {
     border-bottom: 2px solid darkgray;
 }
 
+.topic a {
+    text-decoration: none;
+    font-weight: 500;
+}
+.topic a:hover {
+    text-decoration: underline;
+}
+
 .user_name {
-    font-size: 110%;
-    color: #555555;
+    font-weight: 700;
+    color: dimgray;
     display: inline-block;
 }
 
 .created_at {
-    color: #aaa;
+    font-size: smaller;
+    color: #767676;
     display: inline-block;
     float: right;
 }
@@ -218,6 +203,10 @@ h1.topic-title {
     overflow-wrap: break-word;
 }
 
+.post_content > *:first-child {
+    margin-top: 0.5em;
+}
+
 .emoji{
     width: 1em;
     height:1em;
@@ -234,13 +223,26 @@ label {
 }
 
 .header-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
     padding-bottom: 8px;
-    border-bottom: 3px solid gray;
+    border-bottom: 3px solid lightgray;
 }
 
 .topic-row {
-    padding: 8px;
-    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2px 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid gainsboro;
+}
+
+.category,
+.post-count {
+    font-size: smaller;
+    color: dimgray;
 }
 
 div.meta {

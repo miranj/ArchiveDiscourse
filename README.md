@@ -135,4 +135,4 @@ for more details.
 - Use [Poetry](https://python-poetry.org/) for dependeny management.
 - Honour request rate limits when paging through topic lists.
 - Add configurable rate limit (default: 100 requests per minute).
-- Remove unused CSS
+- Modernise CSS, clean up layout, improve contrast ratios, remove unused styles.
