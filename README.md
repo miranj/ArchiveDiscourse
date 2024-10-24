@@ -38,7 +38,7 @@ Edit the script to set at least the `base_url` variable to the root of your site
 e.g. https://mysite/.  Then run the script to generate a set of HTML pages for
 each topic under a new directory called `export`.
 
-You may also wish to remove the `sleep(1)` at around line 290 and line 319,
+You may also wish to set `max_requests_per_min` variable to -1,
 assuming your Discourse server is not subject to rate limits (set
 `DISCOURSE_MAX_REQS_PER_IP_MODE: none` in the app.yml, and ensure you do not
 include the template `templates/web.ratelimited.template.yml` - rebuild the app
@@ -134,4 +134,5 @@ for more details.
 - Some CSS fixes to improve blockquotes and page rendering in mobile.
 - Use [Poetry](https://python-poetry.org/) for dependeny management.
 - Honour request rate limits when paging through topic lists.
+- Add configurable rate limit (default: 100 requests per minute).
 - Remove unused CSS
