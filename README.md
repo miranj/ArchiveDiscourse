@@ -6,7 +6,7 @@ Code for archiving a Discourse site into static HTML.
 
 Example of an archived Discourse generated using this code: https://discuss-learn.media.mit.edu/
 
-Forked & adapted from: https://github.com/mcmcclur/ArchiveDiscourse, and then https://github.com/kitsandkats/ArchiveDiscourse
+Forked & adapted from: <https://github.com/mcmcclur/ArchiveDiscourse>, then <https://github.com/kitsandkats/ArchiveDiscourse>, and finally <https://github.com/m00k12/ArchiveDiscourse>.
 
 See https://meta.discourse.org/t/a-basic-discourse-archival-tool/62614
 
