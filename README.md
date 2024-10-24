@@ -134,3 +134,4 @@ for more details.
 - Some CSS fixes to improve blockquotes and page rendering in mobile.
 - Use [Poetry](https://python-poetry.org/) for dependeny management.
 - Honour request rate limits when paging through topic lists.
+- Remove unused CSS
