@@ -132,3 +132,4 @@ for more details.
 - Change default output file from index.html to archived.html
 - Add some HTML comments into templates to ease later post processing.
 - Some CSS fixes to improve blockquotes and page rendering in mobile.
+- Use [Poetry](https://python-poetry.org/) for dependeny management.

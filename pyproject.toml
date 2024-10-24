@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "archive-discourse"
+description = "Code for archiving a Discourse site into static HTML."
+readme = "README.md"
+license = "MIT"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+beautifulsoup4 = "^4.12.3"
+pillow = "^8"
+requests = "^2.32.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
