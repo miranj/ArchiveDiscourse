@@ -297,6 +297,13 @@ encoded_missing_image_png = b'iVBORw0KGgoAAAANSUhEUgAAARcAAAELCAYAAADzx8I0AAAAAX
 with open(os.getcwd() + "/images/missing_image.png", "wb") as missing_image_fh:
     missing_image_fh.write(base64.decodebytes(encoded_missing_image_png))
 
+# Write out the CSS.
+f = open('archived.css', 'w')
+f.write(css)
+f.close()
+
+
+
 # This is where *most* of the action happens.
 
 # The following bit of code grabs discourse_url/latest.json to generate a list of topics.
@@ -351,9 +358,4 @@ file_string = main_template \
 
 f = open('archived.html', 'w')
 f.write(file_string)
-f.close()
-
-# Write out the CSS.
-f = open('archived.css', 'w')
-f.write(css)
 f.close()
