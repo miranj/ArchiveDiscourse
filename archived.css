@@ -5,15 +5,23 @@ body {
     line-height: 1.4;
 }
 
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #fff;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+}
+
 .archive-banner {
     background-color: gold;
-    text-align: center;
-    padding: 5px;
+    padding: 5px calc(10%/2);
     font-weight: bold;
-    font-size: 14px;
+    font-size: smaller;
 }
 
 .title-span {
+    padding: 10px calc(10%/2);
     background-color: #fff;
 }
 
@@ -35,19 +43,6 @@ p > code{
 @media only screen and (max-width: 760px) {
     body {
         margin: 0;
-    }
-
-    .header {
-        position: sticky;
-        top: 0;
-        padding: 10px calc(10%/2);
-        z-index: 100;
-        background-color: #fff;
-        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-    }
-
-    .title-span {
-        width: 100%;
     }
 
     h1.site-title {
@@ -93,18 +88,13 @@ p > code{
 }
 
 @media only screen and (min-width: 761px) {
-    .header {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        padding: 10px 0;
-        z-index: 100;
-        background-color: #fff;
-        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+    
+    .archive-banner {
+        text-align: center;
     }
 
     .title-span {
-        width: 80%;
+        width: 70%;
         margin: auto;
     }
 

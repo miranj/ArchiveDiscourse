@@ -24,12 +24,14 @@
 from datetime import date, datetime
 import os, requests, base64
 
-# Make sure to customize these variables
+# 
+# TODO Make sure to customize these variables
+# 
 cookie_name = '_t'
 cookie = ''
 base_url = 'https://my-discourse'
 path = os.path.join(os.getcwd(), 'export')
-archive_blurb = "Archive " + date.today().strftime("%d/%m/%Y") + '.'
+archive_blurb = "" # describe the site here
 max_requests_per_min = 100 # set value to -1 to remove rate limits
 
 try:
@@ -40,6 +42,7 @@ from bs4 import BeautifulSoup as bs
 from PIL import Image
 from io import BytesIO
 from time import sleep
+from string import Template
 
 from shutil import rmtree
 
@@ -75,6 +78,15 @@ with open('templates/topic.html', 'r') as topic_file:
 with open('archived.css', 'r') as css_file:
     css = css_file.read()
 
+archive_notice = Template(
+    'This is an archive of ' + 
+    '<a href="$url">$hostname</a> ' +
+    'captured on <time>$timestamp</time>.'
+).safe_substitute(
+    url=base_url,
+    hostname=urlparse(base_url).hostname,
+    timestamp=datetime.now().strftime("%c")
+)
 
 # Function that writes out each individual topic page
 def write_topic(topic_json):
@@ -120,6 +132,7 @@ def write_topic(topic_json):
     topic_file_string = topic_template \
         .replace("<!-- TOPIC_TITLE -->", topic_json['fancy_title']) \
         .replace("<!-- JUST_SITE_TITLE -->", str(site_title.text)) \
+        .replace("<!-- ARCHIVE_NOTICE -->", archive_notice) \
         .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
         .replace("<!-- POST_LIST -->", post_list_string)
 
@@ -249,6 +262,7 @@ def topic_row(topic_json):
     return topic_html
 
 
+
 # The action is just starting here.
 # Check for the directory where plan to store things.
 # Note that this will be overwritten!
@@ -325,11 +339,13 @@ while 'more_topics_url' in response.json()['topic_list'].keys() and cnt < max_mo
         topic_list_string = topic_list_string + topic_row(topic)
         write_topic(topic)
         throttle_requests()  # Seems the polite thing to do
+
 # Wrap things up.
 # Make the replacements and print the main file.
 file_string = main_template \
     .replace("<!-- TITLE -->", str(site_title)) \
     .replace("<!-- JUST_SITE_TITLE -->", str(site_title.text)) \
+    .replace("<!-- ARCHIVE_NOTICE -->", archive_notice) \
     .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
     .replace("<!-- TOPIC_LIST -->", topic_list_string)
 

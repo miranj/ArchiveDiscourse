@@ -136,3 +136,4 @@ for more details.
 - Honour request rate limits when paging through topic lists.
 - Add configurable rate limit (default: 100 requests per minute).
 - Modernise CSS, clean up layout, improve contrast ratios, remove unused styles.
+- Add archive notice to the top of all pages.
