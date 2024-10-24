@@ -137,3 +137,4 @@ for more details.
 - Add configurable rate limit (default: 100 requests per minute).
 - Modernise CSS, clean up layout, improve contrast ratios, remove unused styles.
 - Add archive notice to the top of all pages.
+- Fetch site title and logo via the API, add header colours.

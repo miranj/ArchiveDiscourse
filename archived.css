@@ -9,7 +9,9 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: #fff;
+    padding: 10px 0;
+    color: var(--header-primary-color, #000);
+    background-color: var(--header-background-color, #fff);
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
 }
 
@@ -21,8 +23,7 @@ body {
 }
 
 .title-span {
-    padding: 10px calc(10%/2);
-    background-color: #fff;
+    margin: auto;
 }
 
 code, pre {
@@ -43,6 +44,10 @@ p > code{
 @media only screen and (max-width: 760px) {
     body {
         margin: 0;
+    }
+    
+    .title-span {
+        width: 90%;
     }
 
     h1.site-title {
@@ -95,7 +100,6 @@ p > code{
 
     .title-span {
         width: 70%;
-        margin: auto;
     }
 
     h1.site-title {

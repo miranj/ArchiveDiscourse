@@ -4,17 +4,23 @@
     <!-- HEAD -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width">
-    <title><!-- TOPIC_TITLE --></title>
+    <title><!-- TOPIC_TITLE --> - <!-- SITE_TITLE --></title>
     <link rel="stylesheet" href="../../archived.css" />
+    <style>
+      :root {
+        --header-primary-color: /* HEADER_PRIMARY_COLOR */;
+        --header-background-color: /* HEADER_BACKGROUND_COLOR */;
+      }
+    </style>
   </head>
 
   <body>
     <!-- BODY_TOP -->
+    <div class="archive-banner"><!-- ARCHIVE_NOTICE --></div>
     <header class="header">
-      <div class="archive-banner"><!-- ARCHIVE_NOTICE --></div>
       <div class="title-span">
         <a href="../../archived.html">
-          <img src="../../images/site-logo.png" height="40" alt="<!-- JUST_SITE_TITLE -->" id="site-logo" />
+          <img src="../../images/site-logo.png" height="40" alt="<!-- SITE_TITLE -->" id="site-logo" />
         </a>
       </div>
     </header>

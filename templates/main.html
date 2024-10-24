@@ -2,19 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!-- TITLE -->
+    <title><!-- SITE_TITLE --></title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/2374bdec1c.css">
     <link rel="stylesheet" href="./archived.css" />
+    <style>
+      :root {
+        --header-primary-color: /* HEADER_PRIMARY_COLOR */;
+        --header-background-color: /* HEADER_BACKGROUND_COLOR */;
+      }
+    </style>
   </head>
 
   <body>
-
+    <div class="archive-banner"><!-- ARCHIVE_NOTICE --></div>
     <header class="header">
-      <div class="archive-banner"><!-- ARCHIVE_NOTICE --></div>
       <div class="title-span">
         <h1 class="site-title">
-          <img src="images/site-logo.png" height="40" alt="<!-- JUST_SITE_TITLE -->" id="site-logo">
+          <img src="images/site-logo.png" height="40" alt="<!-- SITE_TITLE -->" id="site-logo">
         </h1>
       </div>
     </header>
