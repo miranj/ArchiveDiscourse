@@ -38,8 +38,8 @@ Edit the script to set at least the `base_url` variable to the root of your site
 e.g. https://mysite/.  Then run the script to generate a set of HTML pages for
 each topic under a new directory called `export`.
 
-You may also wish to remove the `sleep(1)` at around line 290, assuming your
-Discourse server is not subject to rate limits (set
+You may also wish to remove the `sleep(1)` at around line 290 and line 319,
+assuming your Discourse server is not subject to rate limits (set
 `DISCOURSE_MAX_REQS_PER_IP_MODE: none` in the app.yml, and ensure you do not
 include the template `templates/web.ratelimited.template.yml` - rebuild the app
 after changing the yml if needed).
@@ -133,3 +133,4 @@ for more details.
 - Add some HTML comments into templates to ease later post processing.
 - Some CSS fixes to improve blockquotes and page rendering in mobile.
 - Use [Poetry](https://python-poetry.org/) for dependeny management.
+- Honour request rate limits when paging through topic lists.

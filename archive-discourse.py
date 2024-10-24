@@ -316,6 +316,7 @@ while 'more_topics_url' in response.json()['topic_list'].keys() and cnt < max_mo
     for topic in topic_list[1:]:
         topic_list_string = topic_list_string + topic_row(topic)
         write_topic(topic)
+        sleep(1)  # Seems the polite thing to do
 # Wrap things up.
 # Make the replacements and print the main file.
 file_string = main_template \
