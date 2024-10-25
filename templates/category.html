@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title><!-- SITE_TITLE --></title>
+    <title><!-- CATEGORY_TITLE --> – <!-- SITE_TITLE --></title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="./archived.css" />
+    <link rel="stylesheet" href="../../archived.css" />
     <style>
       :root {
         --header-primary-color: /* HEADER_PRIMARY_COLOR */;
@@ -17,15 +17,19 @@
     <div class="archive-banner"><!-- ARCHIVE_NOTICE --></div>
     <header class="header">
       <div class="title-span">
-        <h1 class="site-title">
-          <img src="images/site-logo.png" height="40" alt="<!-- SITE_TITLE -->" id="site-logo">
-        </h1>
+        <a href="../../archived.html">
+          <img src="../../images/site-logo.png" height="40" alt="<!-- SITE_TITLE -->" id="site-logo" />
+        </a>
       </div>
     </header>
 
     <div class="main">
       <div class="archive-span"><!-- ARCHIVE_BLURB --></div>
-      <div class="categories-list"><!-- CATEGORY_LIST --></div>
+      <div>
+        <h1 class="category-title"><!-- CATEGORY_TITLE --></h1>
+        <div><!-- CATEGORY_DESCRIPTION --></div>
+      </div>
+      <div class="categories-list"><!-- SUBCATEGORY_LIST --></div>
       <div class="topics">
         <div class="header-row">
           <span class="topic-head">Topics</span>

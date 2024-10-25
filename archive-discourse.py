@@ -70,6 +70,10 @@ base_scheme = urlparse(base_url).scheme
 with open('templates/main.html', 'r') as main_file:
     main_template = main_file.read()
 
+# Template for the individual category pages
+with open('templates/category.html', 'r') as category_file:
+    category_template = category_file.read()
+
 # Template for the individual topic pages
 with open('templates/topic.html', 'r') as topic_file:
     topic_template = topic_file.read()
@@ -140,6 +144,38 @@ def write_topic(topic_json):
 
     f = open(topic_relative_url + '/index.html', 'w')
     f.write(topic_file_string)
+    f.close()
+
+
+# Function that writes out each individual category page
+def write_category(category_json):
+    category_relative_url = 'c/'  + str(category_json['id'])
+    try:
+        os.makedirs(category_relative_url)
+    except Exception as err:
+        print ('in write_topic error:', 'make directory')
+    
+    # generate that HTML
+    subcategory_list_string = ""
+    for subcategory_json in (category_json.get('subcategory_list') or []):
+        subcategory_list_string = subcategory_list_string + category_row(subcategory_json, '../../')
+        write_category(subcategory_json)
+    topic_list_string = ""
+    for topic_json in (category_id_to_topics.get(category_json['id']) or []):
+        topic_list_string = topic_list_string + topic_row(topic_json, '../../')
+    category_file_string = category_template \
+        .replace("<!-- CATEGORY_TITLE -->", category_json['name']) \
+        .replace("<!-- CATEGORY_DESCRIPTION -->", (category_json['description'] or '')) \
+        .replace("<!-- SITE_TITLE -->", site_title) \
+        .replace("<!-- ARCHIVE_NOTICE -->", archive_notice) \
+        .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
+        .replace("/* HEADER_PRIMARY_COLOR */", '#' + info_json['header_primary_color']) \
+        .replace("/* HEADER_BACKGROUND_COLOR */", '#' + info_json['header_background_color']) \
+        .replace("<!-- SUBCATEGORY_LIST -->", subcategory_list_string) \
+        .replace("<!-- TOPIC_LIST -->", topic_list_string)
+
+    f = open(category_relative_url + '/index.html', 'w')
+    f.write(category_file_string)
     f.close()
 
 
@@ -231,16 +267,36 @@ def post_row(post_json):
 
 
 # The topic_row function generates the HTML for each topic on the main page
-category_url = base_url + '/categories.json'
+category_url = base_url + '/categories.json?include_subcategories=true'
 response = requests.get(category_url, cookies=jar)
 throttle_requests()
-category_json = response.json()['category_list']['categories']
-category_id_to_cat = dict([(cat['id'], cat) for cat in category_json])
+categories_json = response.json()['category_list']['categories']
+subcategories_json = [subcat for cat in categories_json if len(cat['subcategory_ids']) for subcat in cat['subcategory_list']]
+allcategories_json = categories_json + subcategories_json
+category_id_to_cat = dict([(cat['id'], cat) for cat in allcategories_json])
+category_id_to_topics = dict([(cat['id'], []) for cat in allcategories_json])
+
+def category_row(category_json, base_url = ''):
+    category_url = base_url + 'c/' + str(category_json['id']) + '/index.html'
+    
+    category_html = '<div class="category-row">\n'
+    category_html = category_html + '<span class="category-name">'
+    category_html = category_html   + '<a href="' + category_url + '">'
+    if category_json['color']:
+        category_html = category_html   + '<svg fill="#' + category_json['color'] + '" class="icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><rect width="24" height="24" /></svg>\n'
+    category_html = category_html       + category_json['name'] + '</a>\n'
+    category_html = category_html       + '<span class="category-description">\n'
+    category_html = category_html       + (category_json['description'] or '') + '</span>\n'
+    category_html = category_html + '</span>\n'
+    category_html = category_html + '<span class="post-count">'
+    category_html = category_html       + str(category_json['topics_all_time']) + '</span>\n'
+    category_html = category_html + '</div>\n\n'
+    return category_html
 
 
-def topic_row(topic_json):
-    topic_html = '      <div class="topic-row">\n'
-    topic_url = 't/' + str(topic_json['id'])
+
+def topic_row(topic_json, base_url = ''):
+    topic_url = base_url + 't/' + str(topic_json['id']) + '/index.html'
     topic_title_text = topic_json['fancy_title']
     topic_post_count = topic_json['posts_count']
     topic_pinned = topic_json['pinned_globally']
@@ -249,6 +305,7 @@ def topic_row(topic_json):
     except KeyError:
         topic_category = { 'name': '', 'color': '' }
 
+    topic_html = '      <div class="topic-row">\n'
     topic_html = topic_html + '        <span class="topic">'
     if topic_pinned:
         topic_html = topic_html + '<svg class="icon" title="This was a pinned topic so it '
@@ -334,6 +391,7 @@ for topic in topic_list:
     try:
         write_topic(topic)
         topic_list_string = topic_list_string + topic_row(topic)
+        category_id_to_topics[topic['category_id']].append(topic)
     except Exception as err:
         pass
     throttle_requests()  # Seems the polite thing to do
@@ -349,17 +407,24 @@ while 'more_topics_url' in response.json()['topic_list'].keys() and cnt < max_mo
     for topic in topic_list[1:]:
         topic_list_string = topic_list_string + topic_row(topic)
         write_topic(topic)
+        category_id_to_topics[topic['category_id']].append(topic)
         throttle_requests()  # Seems the polite thing to do
 
 # Wrap things up.
 # Make the replacements and print the main file.
+category_list_string = ""
+for category_json in categories_json:
+    category_list_string = category_list_string + category_row(category_json)
+    write_category(category_json)
+
 file_string = main_template \
     .replace("<!-- SITE_TITLE -->", site_title) \
     .replace("<!-- ARCHIVE_NOTICE -->", archive_notice) \
     .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
     .replace("/* HEADER_PRIMARY_COLOR */", '#' + info_json['header_primary_color']) \
     .replace("/* HEADER_BACKGROUND_COLOR */", '#' + info_json['header_background_color']) \
-    .replace("<!-- TOPIC_LIST -->", topic_list_string)
+    .replace("<!-- TOPIC_LIST -->", topic_list_string) \
+    .replace("<!-- CATEGORY_LIST -->", category_list_string)
 
 f = open('archived.html', 'w')
 f.write(file_string)

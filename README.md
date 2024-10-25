@@ -137,6 +137,7 @@ for more details.
 - Add configurable rate limit (default: 100 requests per minute).
 - Modernise CSS, clean up layout, improve contrast ratios, remove unused styles.
 - Add archive notice to the top of all pages.
+- Allow browsing by category archive pages.
 - Add coloured category badges.
 - Fetch site title and logo via the API, add header colours.
 - Remove Font Awesome dependency.

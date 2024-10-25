@@ -17,13 +17,25 @@ body {
 
 .archive-banner {
     background-color: gold;
-    padding: 5px calc(10%/2);
+    padding: 0.5em calc(10%/2);
     font-weight: bold;
     font-size: smaller;
 }
 
+.archive-span {
+    margin: 0 10px;
+    color: gray;
+    text-align: center;
+}
+
 .title-span {
+    display: flex;
+    align-items: center;
     margin: auto;
+}
+
+.main > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 4rem;
 }
 
 code, pre {
@@ -55,13 +67,6 @@ p > code{
         margin: 0px;
     }
 
-    .archive-span {
-        margin: 0 10px 15px 10px;
-        padding: 10px;
-        color: gray;
-        text-align: center;
-    }
-
     .main {
         width: 90%;
         margin: 0.5em auto auto;
@@ -79,6 +84,7 @@ p > code{
         display: none;
     }
 
+    .category-row,
     .topic-row {
         flex-wrap: wrap;
     }
@@ -108,16 +114,18 @@ p > code{
     }
 
     .archive-span {
-        color: gray;
         font-size: 120%;
-        padding: 10px;
-        margin: 0 10px 15px 10px;
-        text-align: center;
     }
 
     .main {
         width: 70%;
         margin: 1em auto auto;
+    }
+    
+    .categories-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        gap: 0 1em;
     }
 
     .topic-head,
@@ -147,6 +155,9 @@ a {
 h1.topic-title {
     border-bottom: 2px solid darkgray;
 }
+h1.category-title {
+    margin: 0;
+}
 
 .category,
 .topic {
@@ -154,12 +165,19 @@ h1.topic-title {
     align-items: center;
     gap: 0.3em;
 }
+.category-name a,
 .topic a {
     text-decoration: none;
     font-weight: 500;
 }
+.category-name a:hover,
 .topic a:hover {
     text-decoration: underline;
+}
+.category-description {
+    display: block;
+    font-size: smaller;
+    color: dimgray;
 }
 
 .user_name {
@@ -226,6 +244,7 @@ label {
     border-bottom: 3px solid lightgray;
 }
 
+.category-row,
 .topic-row {
     display: flex;
     align-items: baseline;
