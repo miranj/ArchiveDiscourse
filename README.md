@@ -138,3 +138,4 @@ for more details.
 - Modernise CSS, clean up layout, improve contrast ratios, remove unused styles.
 - Add archive notice to the top of all pages.
 - Fetch site title and logo via the API, add header colours.
+- Remove Font Awesome dependency.
