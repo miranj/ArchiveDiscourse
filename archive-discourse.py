@@ -355,6 +355,8 @@ file_string = main_template \
     .replace("<!-- SITE_TITLE -->", site_title) \
     .replace("<!-- ARCHIVE_NOTICE -->", archive_notice) \
     .replace("<!-- ARCHIVE_BLURB -->", archive_blurb) \
+    .replace("/* HEADER_PRIMARY_COLOR */", '#' + info_json['header_primary_color']) \
+    .replace("/* HEADER_BACKGROUND_COLOR */", '#' + info_json['header_background_color']) \
     .replace("<!-- TOPIC_LIST -->", topic_list_string)
 
 f = open('archived.html', 'w')
