@@ -426,6 +426,6 @@ file_string = main_template \
     .replace("<!-- TOPIC_LIST -->", topic_list_string) \
     .replace("<!-- CATEGORY_LIST -->", category_list_string)
 
-f = open('archived.html', 'w')
+f = open('index.html', 'w')
 f.write(file_string)
 f.close()

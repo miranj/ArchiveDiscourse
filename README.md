@@ -129,7 +129,7 @@ for more details.
 - Remove topic slugs
 - Fix deprecation warnings
 - Add post_number achors into topic pages
-- Change default output file from index.html to archived.html
+- ~Change default output file from index.html to archived.html~
 - Add some HTML comments into templates to ease later post processing.
 - Some CSS fixes to improve blockquotes and page rendering in mobile.
 - Use [Poetry](https://python-poetry.org/) for dependeny management.
