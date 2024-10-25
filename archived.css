@@ -128,7 +128,7 @@ p > code{
 
     .category-head,
     .category {
-        width: 10rem;
+        width: 11rem;
     }
 
     .post-count-head,
@@ -148,10 +148,11 @@ h1.topic-title {
     border-bottom: 2px solid darkgray;
 }
 
+.category,
 .topic {
     display: flex;
     align-items: center;
-    gap: 0.2em;
+    gap: 0.3em;
 }
 .topic a {
     text-decoration: none;

@@ -235,7 +235,7 @@ category_url = base_url + '/categories.json'
 response = requests.get(category_url, cookies=jar)
 throttle_requests()
 category_json = response.json()['category_list']['categories']
-category_id_to_name = dict([(cat['id'], cat['name']) for cat in category_json])
+category_id_to_cat = dict([(cat['id'], cat) for cat in category_json])
 
 
 def topic_row(topic_json):
@@ -245,9 +245,9 @@ def topic_row(topic_json):
     topic_post_count = topic_json['posts_count']
     topic_pinned = topic_json['pinned_globally']
     try:
-        topic_category = category_id_to_name[topic_json['category_id']]
+        topic_category = category_id_to_cat[topic_json['category_id']]
     except KeyError:
-        topic_category = ''
+        topic_category = { 'name': '', 'color': '' }
 
     topic_html = topic_html + '        <span class="topic">'
     if topic_pinned:
@@ -257,7 +257,9 @@ def topic_row(topic_json):
     topic_html = topic_html + '<a href="' + topic_url + '">'
     topic_html = topic_html + topic_title_text + '</a></span>\n'
     topic_html = topic_html + '        <span class="category">'
-    topic_html = topic_html + topic_category + '</span>\n'
+    if topic_category['color']:
+        topic_html = topic_html + '<svg fill="#' + topic_category['color'] + '" class="icon" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24"><rect width="24" height="24" /></svg>\n'
+    topic_html = topic_html + topic_category['name'] + '</span>\n'
     topic_html = topic_html + '        <span class="post-count">'
     topic_html = topic_html + str(topic_post_count) + '</span>\n'
     topic_html = topic_html + '      </div>\n\n'
