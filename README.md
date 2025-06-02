@@ -4,7 +4,10 @@
 
 Code for archiving a Discourse site into static HTML.
 
-Example of an archived Discourse generated using this code: https://discuss-learn.media.mit.edu/
+Examples of archived Discourse instances generated using this code:
+
+- https://discuss.indiabioscience.org/ (this fork)
+- https://discuss-learn.media.mit.edu/ (original behaviour)
 
 Forked & adapted from: <https://github.com/mcmcclur/ArchiveDiscourse>, then <https://github.com/kitsandkats/ArchiveDiscourse>, and finally <https://github.com/m00k12/ArchiveDiscourse>.
 
@@ -14,7 +17,7 @@ See https://meta.discourse.org/t/a-basic-discourse-archival-tool/62614
 
 The Discourse platform creates great forums and is rich in features.  However,
 a lot of that goodness is powered by client side scripts that need to run in
-order to generate each page.  This has the side-effect of making it difficult to
+order to generate each page. This has the side-effect of making it difficult to
 archive a Discourse site without running and maintaining the full application
 stack.
 
